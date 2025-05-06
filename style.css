@@ -1,0 +1,205 @@
+/* styles.css */
+body {
+    background-color: #000; 
+    color: #00ff00; 
+    font-family: "Courier New", Courier, monospace; 
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.media {
+    max-width: 400px;
+    height: auto;
+}
+
+iframe.media {
+    width: 660px;
+    height: 315px;
+    border: none;
+}
+
+header h1 .name::after {
+  content: "";
+  width: 5px;
+  height: 20px;
+  margin-left: 5px;
+  background: #00ff00;
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}
+
+header h1 {
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 10px;
+}
+
+.hobbies {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.experience {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.hobby-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 3px solid #00ff00;
+    padding: 10px;
+    overflow: hidden;
+    width: 80%;
+    margin: auto;
+    margin-top: 3ch;
+}
+
+.project-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 3px solid #00ff00;
+    padding: 10px;
+    overflow: hidden;
+    width: 80%;
+    margin: auto;
+    margin-top: 3ch;
+}
+
+.project-text {
+    margin-left: 10px;
+    width: 100%;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Aligns h2 and h4 vertically in the center */
+    width: 100%; /* Ensure the container takes up full width */
+    border-bottom: 1px solid #00ff00; /* Apply the border to the container */
+    padding-bottom: 5px;
+}
+
+
+.experience-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 3px solid #00ff00;
+    padding: 10px;
+    overflow: hidden;
+    width: 80%;
+    margin: auto;
+    margin-top: 3ch;
+}
+
+
+
+/* .experience-container {
+    display:flex;
+    justify-content: space-between;
+    margin: 0px;
+    padding: 0px;
+} */
+
+.experience-text {
+    margin-left: 10px;
+}
+.experience-header {
+    margin-left: 10px;
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 10px;
+}
+
+.experience-item p {
+    margin-left: 10px;
+}
+
+.experience-header h2{
+    border-bottom: 0px;
+
+}
+.location-time {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.hobby-text {
+    margin-left: 10px;
+}
+
+header a {
+    color: #00ff00;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+section {
+    border-radius: 20px;
+    border-color: #00ff00;
+}
+
+.hobby-text h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 5px;
+}
+
+.project-header h2 {
+    color: #ffffff; /* Set color for h2 */
+    margin: 0; /* Remove any default margin */
+}
+
+.project-header h4 {
+    color: #ffffff; /* Set color for h4 */
+    margin: 0; /* Remove any default margin */
+    text-align: right; /* Align h4 text to the right */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 5px 0;
+    position: relative;
+}
+
+ul li::before {
+    content: "> ";
+    color: #00ff00;
+}
+
+strong {
+    font-weight: 1000;
+}
+
+
+.picture-caption p {
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #00ff00; 
+}
