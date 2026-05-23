@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hobbies Page</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
   <body>
     <div class="container">
@@ -13,50 +14,80 @@
             <span class="links">| <a href="experience.html">Experience</a> <a href="projects.html">Projects</a> <a href="hobbies.html">Hobbies</a> </span></h1>
         </header>
     </div>
-    <section id = "hobbies">
+    <section id="hobbies">
         <div class="hobby-item">
-            <div style="text-align: center;" class="picture-caption">
-            <img class="media" src = "images\sun run stadium.webp">
-            <text >So many people at the finish line</text>
+            <div class="picture-caption">
+                <img class="media" src="images/sun run stadium.webp">
+                <div class="media-caption">So many people at the finish line</div>
             </div>
-        <div class="hobby-text">
-            <h2>Athletics</h2>
-            <p style="width:100%; height: auto; object-fit: cover;">As a university student, I sit a lot so I find ways to stay fit. I played competitive badminton since grade 7 and I still play for fun, and I also aim to go to the gym 3 times a week. I got 48:13 on the Vancouver Sun Run 2025, and <a target="_blank" href="https://www.linkedin.com/feed/update/urn:li:activity:7322737144223969281/" style="color: #00ff00; 
-    font-family: Courier New, Courier, monospace;">here</a> is a full breakdown of my thoughts.  </p>
+            <div class="hobby-text">
+                <h2>Athletics</h2>
+                <p>I played competitive badminton since grade 7 and I still play for fun. I also enjoy biking and running (10km PR: <strong>47:03</strong> achieved at the Vancouver Sun Run 2026).</p>
+
+                <p>
+                    <a target="_blank" href="https://www.strava.com/activities/18175350829" class="term-btn">
+                        <i class="fa fa-map-marker"></i> View Activity on Strava
+                    </a>
+                </p>
             </div>
         </div>
         <div class="hobby-item">
-            <img class="media" src="images/monkeytype.jpg">
+            <div class="picture-caption">
+                <img class="media" src="images/monkeytype.jpg" alt="Monkeytype profile">
+            </div>
         <div class="hobby-text">
             <h2>Speed Typing</h2>
-            <p style="width:100%; height: auto; object-fit: cover;">I enjoy speed typing. I am currently ranked in the top 0.7% on Monkey Type. My average typing speed for everyday typing (e.g. texting, writing an essay) is 140-150 WPM. <a target="_blank" href="https://monkeytype.com/profile/etanh" style="color: #00ff00; 
-    font-family: Courier New, Courier, monospace;">Here</a> is my MonkeyType Profile. </p>
+            <p>I enjoy speed typing. I am currently ranked in the <strong>top 0.7%</strong> on Monkey Type. My average typing speed for everyday typing (e.g. texting, writing an essay) is 140-150 WPM. <a target="_blank" href="https://monkeytype.com/profile/etanh" class="term-link">Here</a> is my MonkeyType Profile.</p>
             </div>
         </div>
         <div class="hobby-item">
-            <iframe class="media" allowfullscreen src="https://www.youtube.com/embed/egse03uTV9k"></iframe>
-        <div class="hobby-text" style="width: 100%; height: auto; object-fit: cover;">
-            <h2>Playing Piano</h2>
-            <p>I have been playing piano since I was 6, and I have completed RCM 10 with First Class Honours. This is me playing one of my favourite pieces, <a target="_blank" href="https://en.wikipedia.org/wiki/La_campanella" style="color: #00ff00; 
-    font-family: Courier New, Courier, monospace;">La Campanella</a>. I'll try to get a full recording soon. 
-    I am currently learning <a target="_blank" href="https://en.wikipedia.org/wiki/Ballade_No._1_(Chopin)" style="color: #00ff00; 
-    font-family: Courier New, Courier, monospace;">Ballade No. 1</a>.
-     I can also improvise pop songs on the spot, provided that I have heard it before and know it somewhat well. </p>
+            <div class="picture-caption piano-media">
+                <div class="piano-slider-viewport">
+                    <iframe id="piano-embed" class="piano-embed" width="400" height="225"
+                        title="La Campanella"
+                        src="https://www.youtube-nocookie.com/embed/egse03uTV9k?rel=0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="slider-controls">
+                    <button type="button" class="slider-arrow btn-prev" aria-label="Previous video">&lt; Prev</button>
+                    <span id="piano-slider-caption" class="slider-caption-text"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/La_campanella" class="term-link">La Campanella</a></span>
+                    <button type="button" class="slider-arrow btn-next" aria-label="Next video">Next &gt;</button>
+                </div>
+            </div>
+            <div class="hobby-text">
+                <h2>Playing Piano</h2>
+                <p>Like many other children, I was forced to learn piano by parents. I still play for fun and I practice ~2 hours per week. Enjoy some of my recordings.</p>
+                <div class="repertoire">
+                    <span class="repertoire-label">Also in my repertoire:</span>
+                    <ul class="repertoire-list">
+                        <li><a target="_blank" href="https://en.wikipedia.org/wiki/Piano_Sonata_No._14_(Beethoven)">Moonlight Sonata</a></li>
+                        <li><a target="_blank" href="https://en.wikipedia.org/wiki/%C3%89tudes_(Chopin)#Op._10,_No._5_in_G%E2%99%AD_major">Black Key Etude</a></li>
+                        <li><a target="_blank" href="https://en.wikipedia.org/wiki/Liebestr%C3%A4ume">Liebestraum No. 3</a></li>
+                    </ul>
+                </div>
+                <div class="repertoire">
+                    <span class="repertoire-label">Currently learning:</span>
+                    <ul class="repertoire-list">
+                        <li><a target="_blank" href="https://en.wikipedia.org/wiki/Polonaise_No._6_(Chopin)">Heroic Polonaise</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="hobby-item">
-            <div style="text-align: center;" class="picture-caption">
-            <img class="media" src = "images\podium.png">
-            <text >3x3 Blindfolded 2nd place at Please be Solved Vancouver 2024 @ UBC</text>
+            <div class="picture-caption">
+                <img class="media" src="images/podium.png">
+                <div class="media-caption">3x3 Blindfolded 2nd place at Please be Solved Vancouver 2024 @ UBC</div>
             </div>
         <div class="hobby-text">
             <h2>Speed Cubing</h2>
-            <p style="width:100%; height: auto; object-fit: cover;">I also enjoy solving Rubik's Cubes (blindfolded). My favourite event is 3x3 blindfolded, but I also practice 3x3, 4x4, 5x5 as well. For 3x3 blindfolded, I currently use 3-style, which is the most advanced method. I am ranked <strong>17th in Canada</strong> for 3x3 blindfolded. I attended ~10 official competitions so far. <a href="https://www.worldcubeassociation.org/persons/2022HUAN26" style="color: #00ff00; 
-    font-family: Courier New, Courier, monospace;" target="_blank">Here</a> is my WCA profile.</p>
+            <p>I also enjoy solving Rubik's Cubes (blindfolded). My favourite event is 3x3 blindfolded, but I also practice 3x3, 4x4, 5x5 as well. For 3x3 blindfolded, I currently use 3-style, which is the most advanced method. I am ranked <strong>10th in Canada</strong> for 3x3 blindfolded. I attended 10+ official competitions so far. <a target="_blank" href="https://www.worldcubeassociation.org/persons/2022HUAN26" class="term-link">Here</a> is my WCA profile.</p>
             </div>
         </div>
         
     </section>
     <script src="index.js"></script>
+    <script src="https://strava-embeds.com/embed.js"></script>
   </body>
 </html>

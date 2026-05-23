@@ -1,10 +1,151 @@
 /* styles.css */
+:root {
+    --mouse-x: -9999px;
+    --mouse-y: -9999px;
+    --matrix-green: #00ff00;
+    --matrix-glow: rgba(0, 255, 0, 0.55);
+}
+
 body {
     background-color: #000; 
     color: #00ff00; 
     font-family: "Courier New", Courier, monospace; 
     margin: 0;
     padding: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+
+    a,
+    button,
+    .social-icon {
+        cursor: none;
+    }
+}
+
+/* Site-wide matrix atmosphere */
+.matrix-effects {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    overflow: hidden;
+}
+
+.matrix-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 255, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.35;
+    mask-image: radial-gradient(
+        circle 520px at var(--mouse-x) var(--mouse-y),
+        black 0%,
+        transparent 72%
+    );
+    transition: opacity 0.35s ease;
+}
+
+body.matrix-active .matrix-grid {
+    opacity: 0.7;
+}
+
+.matrix-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.04) 2px,
+        rgba(0, 255, 0, 0.04) 4px
+    );
+    opacity: 0.25;
+    mask-image: radial-gradient(
+        circle 480px at var(--mouse-x) var(--mouse-y),
+        black 15%,
+        transparent 75%
+    );
+    transition: opacity 0.35s ease;
+}
+
+body.matrix-active .matrix-scanlines {
+    opacity: 0.55;
+}
+
+.matrix-spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle 320px at var(--mouse-x) var(--mouse-y),
+        rgba(0, 255, 0, 0.14) 0%,
+        rgba(0, 255, 0, 0.06) 35%,
+        transparent 68%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+body.matrix-active .matrix-spotlight {
+    opacity: 1;
+}
+
+.matrix-cursor {
+    position: fixed;
+    left: var(--mouse-x);
+    top: var(--mouse-y);
+    width: 8px;
+    height: 18px;
+    margin-left: 2px;
+    margin-top: -2px;
+    background: var(--matrix-green);
+    box-shadow:
+        0 0 8px var(--matrix-glow),
+        0 0 20px rgba(0, 255, 0, 0.35);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    animation: cursor-blink 1.2s steps(2) infinite;
+}
+
+body.matrix-active .matrix-cursor {
+    opacity: 1;
+}
+
+/* Content glows inside the cursor spotlight */
+body.matrix-active p,
+body.matrix-active li,
+body.matrix-active h2,
+body.matrix-active h4,
+body.matrix-active strong,
+body.matrix-active .project-text,
+body.matrix-active .experience-text,
+body.matrix-active .hobby-text {
+    transition: text-shadow 0.2s ease, color 0.2s ease;
+}
+
+body.matrix-active .container:hover p,
+body.matrix-active .container:hover li,
+body.matrix-active section:hover h2 {
+    text-shadow: 0 0 6px rgba(0, 255, 0, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .matrix-cursor {
+        animation: none;
+        opacity: 0.85;
+    }
+
+    .matrix-spotlight,
+    .matrix-scanlines,
+    .matrix-grid {
+        transition: none;
+    }
 }
 
 .container {
@@ -30,6 +171,85 @@ iframe.media {
     width: 660px;
     height: 315px;
     border: none;
+}
+
+.piano-video {
+    margin: 0;
+}
+
+iframe.piano-embed {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    vertical-align: top;
+}
+
+.picture-caption {
+    flex-shrink: 0;
+    width: 400px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.picture-caption .media,
+.picture-caption img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+}
+
+.piano-media {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+.piano-slider-viewport {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.piano-media .slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #00ff00;
+    font-family: Courier New, Courier, monospace;
+}
+
+.slider-caption-text {
+    flex: 1;
+    text-align: center;
+}
+
+.slider-arrow {
+    background: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    font-family: Courier New, Courier, monospace;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.slider-arrow:hover {
+    background: rgba(0, 255, 0, 0.15);
+}
+
+.piano-video figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+    color: #00ff00;
 }
 
 header h1 .name::after {
@@ -68,29 +288,38 @@ header h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 3px solid #00ff00;
-    padding: 10px;
+    gap: 40px;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 28px;
     overflow: hidden;
     width: 80%;
     margin: auto;
     margin-top: 3ch;
+    background: rgba(0, 255, 0, 0.02);
+    box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05);
 }
 
 .project-item {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 3px solid #00ff00;
-    padding: 10px;
+    gap: 40px;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 28px;
     overflow: hidden;
     width: 80%;
     margin: auto;
     margin-top: 3ch;
+    background: rgba(0, 255, 0, 0.02);
+    box-shadow: inset 0 0 24px rgba(0, 255, 0, 0.05);
 }
 
 .project-text {
-    margin-left: 10px;
-    width: 100%;
+    margin-left: 0;
+    flex: 1;
+    min-width: 0;
 }
 
 .project-header {
@@ -147,18 +376,102 @@ header h1 {
 }
 
 .hobby-text {
-    margin-left: 10px;
+    margin-left: 0;
+    flex: 1;
 }
 
 header a {
     color: #00ff00;
     text-decoration: none;
     margin-left: 10px;
+    position: relative;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+header .links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background: #00ff00;
+    box-shadow: 0 0 6px #00ff00;
+    transition: width 0.25s ease;
+}
+
+header .links a:hover {
+    color: #7fff7f;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+header .links a:hover::after {
+    width: 100%;
+}
+
+header .name a:hover {
+    text-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
+}
+
+header .name:hover::after {
+    animation-duration: 0.75s;
 }
 
 section {
     border-radius: 20px;
     border-color: #00ff00;
+}
+
+section h2 {
+    display: inline-block;
+    transition: text-shadow 0.2s ease, letter-spacing 0.2s ease;
+}
+
+section h2:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    letter-spacing: 0.05em;
+}
+
+.intro-and-pfp {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    border: 4px solid #00ff00;
+    width: 250px;
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.03);
+    border-color: #7fff7f;
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.5),
+        0 0 40px rgba(0, 255, 0, 0.2);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    font-size: 48px;
+    color: #00ff00;
+    text-decoration: none;
+    transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.social-icon:hover {
+    color: #7fff7f;
+    transform: translateY(-4px) scale(1.1);
+    text-shadow: 0 0 16px rgba(0, 255, 0, 0.8);
 }
 
 .hobby-text h2 {
@@ -186,11 +499,75 @@ ul {
 ul li {
     margin: 5px 0;
     position: relative;
+    padding-left: 0;
+    transition: padding-left 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+    cursor: default;
+}
+
+ul li:hover {
+    padding-left: 8px;
+    color: #7fff7f;
+    text-shadow: 0 0 6px rgba(0, 255, 0, 0.4);
 }
 
 ul li::before {
     content: "> ";
     color: #00ff00;
+    transition: content 0.15s ease, text-shadow 0.2s ease;
+}
+
+ul li:hover::before {
+    content: ">> ";
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+.project-item,
+.experience-item,
+.hobby-item {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+}
+
+.project-item:hover,
+.experience-item:hover,
+.hobby-item:hover {
+    transform: translateY(-3px);
+    border-color: #7fff7f;
+    box-shadow:
+        0 4px 24px rgba(0, 255, 0, 0.25),
+        inset 0 0 30px rgba(0, 255, 0, 0.03);
+}
+
+.project-item .media,
+.experience-item .media,
+.hobby-item .media,
+.project-item img,
+.experience-item img,
+.hobby-item img {
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.project-item:hover .media,
+.experience-item:hover .media,
+.hobby-item:hover .media,
+.project-item:hover img:not(.profile-pic),
+.experience-item:hover img:not(.profile-pic),
+.hobby-item:hover img:not(.profile-pic) {
+    filter: brightness(1.15) saturate(1.1);
+    transform: scale(1.02);
+}
+
+.project-header h2,
+.experience-header h2,
+.hobby-text h2 {
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.project-item:hover .project-header h2,
+.experience-item:hover .experience-header h2,
+.hobby-item:hover .hobby-text h2 {
+    color: #7fff7f;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
 }
 
 strong {
@@ -201,5 +578,134 @@ strong {
 .picture-caption p {
   margin-top: 8px;
   font-size: 0.9em;
-  color: #00ff00; 
+  color: #00ff00;
 }
+
+/* Shared terminal-style inline link */
+.term-link {
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(0, 255, 0, 0.45);
+    transition: color 0.2s ease, text-shadow 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.term-link:hover {
+    color: #7fff7f;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+    border-bottom-color: #7fff7f;
+}
+
+/* Pill-style call-to-action button (Strava, etc.) */
+.term-btn {
+    display: inline-block;
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    border: 1px solid #00ff00;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.term-btn:hover {
+    background: rgba(0, 255, 0, 0.12);
+    color: #7fff7f;
+    border-color: #7fff7f;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+    transform: translateY(-1px);
+}
+
+/* Small italic image caption */
+.media-caption {
+    font-size: 12px;
+    color: #00ff00;
+    margin-top: 6px;
+    font-style: italic;
+    opacity: 0.85;
+    text-align: center;
+}
+
+/* Achievement highlight inline badge */
+.rank-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    background: rgba(0, 255, 0, 0.12);
+    border: 1px solid #00ff00;
+    border-radius: 3px;
+    font-weight: 700;
+    color: #7fff7f;
+}
+
+/* Repertoire chips */
+.repertoire {
+    margin-top: 8px;
+}
+
+.repertoire-label {
+    display: block;
+    font-weight: 1000;
+    margin-bottom: 6px;
+}
+
+.repertoire-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.repertoire-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.repertoire-list li::before {
+    content: "";
+}
+
+.repertoire-list li:hover {
+    padding-left: 0;
+    color: inherit;
+    text-shadow: none;
+}
+
+.repertoire-list a {
+    display: inline-block;
+    padding: 3px 9px;
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    border-radius: 3px;
+    color: #00ff00;
+    text-decoration: none;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9em;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.repertoire-list a:hover {
+    background: rgba(0, 255, 0, 0.12);
+    border-color: #7fff7f;
+    color: #7fff7f;
+    text-shadow: 0 0 6px rgba(0, 255, 0, 0.6);
+}
+
+/* Better paragraph rhythm inside hobby cards */
+.hobby-text p {
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+
+.strava-embed-placeholder {
+  max-width: 400px;
+  margin-top: 15px;
+}
+
+.strava-embed-placeholder iframe {
+  width: 100% !important;
+  max-width: 400px !important;
+  height: 300px !important;
+}
+
