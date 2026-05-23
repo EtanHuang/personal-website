@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Video tracks library configuration list
     const playlist = [
         { id: "egse03uTV9k", title: "La Campanella", wiki: "https://en.wikipedia.org/wiki/La_campanella" },
-        { id: "z123vsYk3nA", title: "Ballade No. 1", wiki: "https://en.wikipedia.org/wiki/Ballades_(Chopin)#Ballade_No._1_in_G_minor,_Op._23" },
-        { id: "m1iLhY28tFQ", title: "Waterfall Etude", wiki: "https://en.wikipedia.org/wiki/%C3%89tudes_(Chopin)#Op._10,_No._1_in_C_major" }
+        { id: "z123vsYk3nA", title: "Ballade No. 1", wiki: "https://en.wikipedia.org/wiki/Ballade_No._1_(Chopin)" },
+        { id: "m1iLhY28tFQ", title: "Waterfall Etude", wiki: "https://en.wikipedia.org/wiki/%C3%89tude_Op._10,_No._1_(Chopin)" }
     ];
     
     let currentIndex = 0;
