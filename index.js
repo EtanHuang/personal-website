@@ -1,3 +1,92 @@
+/* Chill matrix rain — dim, sparse falling 0s and 1s behind the page */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "matrix-rain";
+  canvas.setAttribute("aria-hidden", "true");
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+  const fontSize = 16;
+  const gap = 30; // spacing between streams — bigger = fewer, sparser columns
+
+  let width, height, columns, drops;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    columns = Math.ceil(width / gap);
+    // Start each column at a random height so the rain doesn't begin in a line
+    drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -50));
+  }
+
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+
+  // Track the cursor so nearby code lights up
+  let mouseX = -9999;
+  let mouseY = -9999;
+  const glowRadius = 140;
+
+  window.addEventListener(
+    "mousemove",
+    (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("mouseout", () => {
+    mouseX = -9999;
+    mouseY = -9999;
+  });
+
+  let last = 0;
+  const interval = 90; // ms between steps — higher = more relaxed pace
+
+  function draw(ts) {
+    requestAnimationFrame(draw);
+    if (ts - last < interval) return;
+    last = ts;
+
+    // Translucent black fade leaves soft trailing tails
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.font = fontSize + "px 'Courier New', monospace";
+
+    for (let i = 0; i < columns; i++) {
+      const char = Math.random() < 0.5 ? "0" : "1";
+      const x = i * gap;
+      const y = drops[i] * fontSize;
+
+      // Brighten characters close to the cursor, fading with distance
+      const dist = Math.hypot(x - mouseX, y - mouseY);
+      if (dist < glowRadius) {
+        const t = 1 - dist / glowRadius; // 1 at cursor, 0 at edge
+        const lift = Math.floor(200 * t); // shift green toward white
+        ctx.fillStyle = `rgba(${lift}, 255, ${lift}, ${0.45 + 0.5 * t})`;
+        ctx.shadowColor = "rgba(0, 255, 0, 0.8)";
+        ctx.shadowBlur = 10 * t;
+      } else {
+        ctx.fillStyle = "rgba(0, 255, 0, 0.45)";
+        ctx.shadowBlur = 0;
+      }
+
+      ctx.fillText(char, x, y);
+
+      if (y > height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+
+    ctx.shadowBlur = 0;
+  }
+
+  requestAnimationFrame(draw);
+})();
+
 (function () {
   if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
