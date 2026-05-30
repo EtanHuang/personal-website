@@ -79,3 +79,41 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const photoEl = document.getElementById('cubing-photo');
+    const captionEl = document.getElementById('cubing-slider-caption');
+    const prevBtn = document.querySelector('.photo-btn-prev');
+    const nextBtn = document.querySelector('.photo-btn-next');
+
+    // Speed cubing photo gallery list
+    const photos = [
+        { src: "images/podium.png", caption: "3x3 Blindfolded 2nd place at Please be Solved Vancouver 2024 at UBC" },
+        { src: "images/surreysideopenpodium.png", caption: "First place at Surrey Side Open" }
+    ];
+
+    let currentIndex = 0;
+
+    if (!photoEl || !captionEl) return; // Guard logic execution check
+
+    function updatePhoto(index) {
+        currentIndex = (index + photos.length) % photos.length;
+        const photo = photos[currentIndex];
+
+        photoEl.src = photo.src;
+        photoEl.alt = photo.caption;
+        captionEl.textContent = photo.caption;
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            updatePhoto(currentIndex + 1);
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            updatePhoto(currentIndex - 1);
+        });
+    }
+});
